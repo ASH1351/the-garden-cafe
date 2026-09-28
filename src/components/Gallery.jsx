@@ -93,13 +93,13 @@ export default function Gallery() {
           </p>
 
           {/* Filter Pills */}
-          <div className="mt-8 flex items-center gap-2 p-1 bg-cream-100/90 rounded-full border border-olive/20 shadow-warm-sm">
+          <div className="mt-6 sm:mt-8 flex items-center gap-1.5 sm:gap-2 p-1 bg-cream-100/90 rounded-full border border-olive/20 shadow-warm-sm overflow-x-auto max-w-full no-scrollbar">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 data-cursor="pointer"
-                className={`px-5 py-2 rounded-full font-sub text-xs font-bold tracking-wider transition-all duration-300 ${
+                className={`px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full font-sub text-[11px] sm:text-xs font-bold tracking-wider transition-all duration-300 whitespace-nowrap ${
                   activeCategory === cat
                     ? 'bg-olive text-cream-100 shadow-warm-sm scale-105'
                     : 'text-espresso/70 hover:text-forest'

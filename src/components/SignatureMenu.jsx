@@ -364,22 +364,22 @@ function ScrollLivingMenu() {
         
         {/* Phase 1: The Closed Heritage Leather Menu (0 - 30%) */}
         <div
-          className={`absolute left-6 sm:left-12 bottom-24 sm:bottom-28 max-w-sm p-5 sm:p-6 bg-cream-100/95 backdrop-blur-md rounded-2xl border-2 border-olive/30 shadow-warm-lg transition-all duration-500 pointer-events-auto ${
+          className={`absolute left-3 right-3 sm:right-auto sm:left-12 bottom-16 sm:bottom-28 max-w-sm p-4 sm:p-6 bg-cream-100/95 backdrop-blur-md rounded-2xl border-2 border-olive/30 shadow-warm-lg transition-all duration-500 pointer-events-auto ${
             scrollProgress < 0.28
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8 pointer-events-none'
           }`}
         >
-          <div className="inline-block px-2.5 py-0.5 bg-olive text-cream-100 font-sub text-[10px] font-bold tracking-widest rounded-md uppercase mb-2">
+          <div className="inline-block px-2.5 py-0.5 bg-olive text-cream-100 font-sub text-[9px] sm:text-[10px] font-bold tracking-widest rounded-md uppercase mb-1.5 sm:mb-2">
             CHAPTER 01 • EST. 2018
           </div>
-          <h3 className="font-heading text-xl sm:text-2xl text-forest font-bold">
+          <h3 className="font-heading text-lg sm:text-2xl text-forest font-bold leading-tight">
             The Heritage Leather Journal
           </h3>
-          <p className="mt-2 font-body text-xs sm:text-sm text-espresso/80 leading-relaxed">
+          <p className="mt-1.5 sm:mt-2 font-body text-xs sm:text-sm text-espresso/80 leading-relaxed">
             Resting on sun-warmed teakwood in our jasmine courtyard, our leather-bound menu holds generations of culinary stories.
           </p>
-          <div className="mt-3 flex items-center gap-1.5 text-olive font-sub text-xs font-bold">
+          <div className="mt-2.5 sm:mt-3 flex items-center gap-1.5 text-olive font-sub text-[11px] sm:text-xs font-bold">
             <span>Scroll down to turn the page</span>
             <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
           </div>
@@ -387,22 +387,22 @@ function ScrollLivingMenu() {
 
         {/* Phase 2: Pages Open & Sketches Reveal (30% - 65%) */}
         <div
-          className={`absolute right-6 sm:right-12 bottom-24 sm:bottom-28 max-w-sm p-5 sm:p-6 bg-cream-100/95 backdrop-blur-md rounded-2xl border-2 border-olive/30 shadow-warm-lg transition-all duration-500 pointer-events-auto ${
+          className={`absolute left-3 right-3 sm:left-auto sm:right-12 bottom-16 sm:bottom-28 max-w-sm p-4 sm:p-6 bg-cream-100/95 backdrop-blur-md rounded-2xl border-2 border-olive/30 shadow-warm-lg transition-all duration-500 pointer-events-auto ${
             scrollProgress >= 0.28 && scrollProgress < 0.65
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8 pointer-events-none'
           }`}
         >
-          <div className="inline-block px-2.5 py-0.5 bg-mustard text-espresso font-sub text-[10px] font-bold tracking-widest rounded-md uppercase mb-2">
+          <div className="inline-block px-2.5 py-0.5 bg-mustard text-espresso font-sub text-[9px] sm:text-[10px] font-bold tracking-widest rounded-md uppercase mb-1.5 sm:mb-2">
             CHAPTER 02 • BOTANICAL CRAFT
           </div>
-          <h3 className="font-heading text-xl sm:text-2xl text-forest font-bold">
+          <h3 className="font-heading text-lg sm:text-2xl text-forest font-bold leading-tight">
             Hand-Drawn Garden Sketches
           </h3>
-          <p className="mt-2 font-body text-xs sm:text-sm text-espresso/80 leading-relaxed">
+          <p className="mt-1.5 sm:mt-2 font-body text-xs sm:text-sm text-espresso/80 leading-relaxed">
             Before every recipe reaches your table, it is illustrated with fresh garden herbs, cold-pressed oils, and farm botanicals.
           </p>
-          <div className="mt-3 flex items-center gap-1.5 text-forest font-sub text-xs font-bold">
+          <div className="mt-2.5 sm:mt-3 flex items-center gap-1.5 text-forest font-sub text-[11px] sm:text-xs font-bold">
             <span>Keep scrolling to watch dishes bloom</span>
             <ArrowDown className="w-3.5 h-3.5 animate-bounce text-mustard" />
           </div>
@@ -410,25 +410,25 @@ function ScrollLivingMenu() {
 
         {/* Phase 3: The Full Feast Materializes (65% - 100%) */}
         <div
-          className={`absolute left-6 sm:left-12 bottom-24 sm:bottom-28 max-w-sm p-5 sm:p-6 bg-cream-100/95 backdrop-blur-md rounded-2xl border-2 border-olive/30 shadow-warm-lg transition-all duration-500 pointer-events-auto ${
+          className={`absolute left-3 right-3 sm:right-auto sm:left-12 bottom-16 sm:bottom-28 max-w-sm p-4 sm:p-6 bg-cream-100/95 backdrop-blur-md rounded-2xl border-2 border-olive/30 shadow-warm-lg transition-all duration-500 pointer-events-auto ${
             scrollProgress >= 0.65
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8 pointer-events-none'
           }`}
         >
-          <div className="inline-block px-2.5 py-0.5 bg-leaf text-cream-100 font-sub text-[10px] font-bold tracking-widest rounded-md uppercase mb-2">
+          <div className="inline-block px-2.5 py-0.5 bg-leaf text-cream-100 font-sub text-[9px] sm:text-[10px] font-bold tracking-widest rounded-md uppercase mb-1.5 sm:mb-2">
             CHAPTER 03 • CULINARY BLOOM
           </div>
-          <h3 className="font-heading text-xl sm:text-2xl text-forest font-bold">
+          <h3 className="font-heading text-lg sm:text-2xl text-forest font-bold leading-tight">
             The Living Garden Feast
           </h3>
-          <p className="mt-2 font-body text-xs sm:text-sm text-espresso/80 leading-relaxed">
+          <p className="mt-1.5 sm:mt-2 font-body text-xs sm:text-sm text-espresso/80 leading-relaxed">
             Steaming Kulhad Chai, stone-oven Basil Pizza, Smoked Brioche Burger, and Wok Street Noodles elevate into reality!
           </p>
           <button
             onClick={scrollToCatalog}
             data-cursor="pointer"
-            className="mt-3 flex items-center gap-2 px-4 py-2 bg-mustard hover:bg-mustard-light text-espresso font-sub text-xs font-bold tracking-wider rounded-xl transition-all shadow-sm"
+            className="mt-2.5 sm:mt-3 flex items-center justify-center gap-2 w-full sm:w-auto px-4 py-2 bg-mustard hover:bg-mustard-light text-espresso font-sub text-xs font-bold tracking-wider rounded-xl transition-all shadow-sm"
           >
             <Sparkles className="w-3.5 h-3.5 text-forest" />
             <span>EXPLORE FULL MENU & ORDER</span>
@@ -436,22 +436,22 @@ function ScrollLivingMenu() {
         </div>
 
         {/* Bottom Milestone Progress Track HUD */}
-        <div className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 w-11/12 max-w-xl z-20 flex flex-col items-center">
-          <div className="w-full bg-cream-100/90 backdrop-blur-md p-2.5 sm:p-3 rounded-2xl border border-olive/30 shadow-warm-md flex flex-col gap-2">
-            <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-sub font-bold uppercase tracking-wider text-forest">
+        <div className="absolute bottom-2 sm:bottom-8 left-1/2 -translate-x-1/2 w-[94%] max-w-xl z-20 flex flex-col items-center">
+          <div className="w-full bg-cream-100/95 backdrop-blur-md p-2 sm:p-3 rounded-2xl border border-olive/30 shadow-warm-md flex flex-col gap-1.5 sm:gap-2">
+            <div className="flex items-center justify-between text-[9px] sm:text-[11px] font-sub font-bold uppercase tracking-wider text-forest">
               <span className={scrollProgress < 0.3 ? 'text-olive underline font-black' : 'text-espresso/60'}>
-                1. Heritage Book
+                1. Book
               </span>
               <span className={scrollProgress >= 0.3 && scrollProgress < 0.65 ? 'text-olive underline font-black' : 'text-espresso/60'}>
-                2. Pages Open
+                2. Pages
               </span>
               <span className={scrollProgress >= 0.65 ? 'text-olive underline font-black' : 'text-espresso/60'}>
-                3. Feast Elevates
+                3. Feast
               </span>
             </div>
 
             {/* Continuous Progress Fill Bar */}
-            <div className="h-2 w-full bg-cream-300 rounded-full overflow-hidden p-0.5">
+            <div className="h-1.5 sm:h-2 w-full bg-cream-300 rounded-full overflow-hidden p-0.5">
               <div
                 className="h-full bg-gradient-to-r from-olive via-mustard to-leaf rounded-full transition-all duration-75 ease-out"
                 style={{ width: `${Math.round(scrollProgress * 100)}%` }}

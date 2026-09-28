@@ -75,39 +75,39 @@ export default function ReservationContact({ defaultOpen = false }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* Left Column: Interactive Reservation Form */}
-          <div className="lg:col-span-7 bg-cream-50/95 p-8 sm:p-10 rounded-3xl border-2 border-olive/30 shadow-warm-lg">
+          <div className="lg:col-span-7 bg-cream-50/95 p-5 sm:p-10 rounded-3xl border-2 border-olive/30 shadow-warm-lg">
             
             {isSubmitted ? (
-              <div className="py-12 flex flex-col items-center text-center animate-fadeIn">
-                <div className="w-16 h-16 rounded-full bg-olive text-cream-100 flex items-center justify-center mb-5 shadow-leaf-glow">
-                  <CheckCircle2 className="w-10 h-10" />
+              <div className="py-8 sm:py-12 flex flex-col items-center text-center animate-fadeIn">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-olive text-cream-100 flex items-center justify-center mb-4 sm:mb-5 shadow-leaf-glow">
+                  <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10" />
                 </div>
                 <span className="font-sub text-xs font-bold tracking-widest text-olive uppercase">
                   RESERVATION CONFIRMED
                 </span>
-                <h3 className="font-heading text-3xl text-forest font-bold mt-2">
+                <h3 className="font-heading text-2xl sm:text-3xl text-forest font-bold mt-2">
                   We'll Have Your Table Ready!
                 </h3>
-                <p className="mt-3 font-body text-sm sm:text-base text-espresso/80 max-w-md">
+                <p className="mt-3 font-body text-xs sm:text-base text-espresso/80 max-w-md">
                   Thank you, <strong>{formData.name}</strong>. We've reserved a lovely spot for <strong>{formData.guests} guests</strong> in our <strong>{formData.area.replace('-', ' ').toUpperCase()}</strong> on <strong>{formData.date || 'today'}</strong> at <strong>{formData.time}</strong>.
                 </p>
 
-                <div className="mt-6 p-4 bg-cream-200/90 rounded-2xl border border-olive/30 font-sub text-xs tracking-wider text-forest font-bold">
-                  BOOKING REFERENCE: <span className="text-mustard-dark font-heading text-lg ml-1">{bookingRef}</span>
+                <div className="mt-5 p-3.5 sm:p-4 bg-cream-200/90 rounded-2xl border border-olive/30 font-sub text-xs tracking-wider text-forest font-bold">
+                  BOOKING REFERENCE: <span className="text-mustard-dark font-heading text-base sm:text-lg ml-1">{bookingRef}</span>
                 </div>
 
                 <button
                   onClick={() => setIsSubmitted(false)}
                   data-cursor="pointer"
-                  className="mt-8 px-6 py-2.5 rounded-full font-sub text-xs font-bold tracking-wider bg-forest text-cream-100 hover:bg-forest-light transition-all shadow-warm-sm"
+                  className="mt-6 sm:mt-8 px-6 py-2.5 rounded-full font-sub text-xs font-bold tracking-wider bg-forest text-cream-100 hover:bg-forest-light transition-all shadow-warm-sm"
                 >
                   MAKE ANOTHER RESERVATION
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                 <div>
-                  <h3 className="font-heading text-2xl text-forest font-bold">
+                  <h3 className="font-heading text-xl sm:text-2xl text-forest font-bold">
                     Table Booking Form
                   </h3>
                   <p className="font-body text-xs sm:text-sm text-espresso/70 mt-1">
@@ -115,10 +115,10 @@ export default function ReservationContact({ defaultOpen = false }) {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                   {/* Full Name */}
                   <div>
-                    <label className="block font-sub text-xs font-bold tracking-wider text-forest uppercase mb-1.5">
+                    <label className="block font-sub text-[11px] sm:text-xs font-bold tracking-wider text-forest uppercase mb-1">
                       Full Name *
                     </label>
                     <input
@@ -128,13 +128,13 @@ export default function ReservationContact({ defaultOpen = false }) {
                       placeholder="e.g. Maya Iyer"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-sm outline-none transition-all"
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-base sm:text-sm outline-none transition-all"
                     />
                   </div>
 
                   {/* Phone Number */}
                   <div>
-                    <label className="block font-sub text-xs font-bold tracking-wider text-forest uppercase mb-1.5">
+                    <label className="block font-sub text-[11px] sm:text-xs font-bold tracking-wider text-forest uppercase mb-1">
                       Phone Number *
                     </label>
                     <input
@@ -144,13 +144,13 @@ export default function ReservationContact({ defaultOpen = false }) {
                       placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-sm outline-none transition-all"
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-base sm:text-sm outline-none transition-all"
                     />
                   </div>
 
                   {/* Date */}
                   <div>
-                    <label className="block font-sub text-xs font-bold tracking-wider text-forest uppercase mb-1.5">
+                    <label className="block font-sub text-[11px] sm:text-xs font-bold tracking-wider text-forest uppercase mb-1">
                       Date *
                     </label>
                     <div className="relative">
@@ -160,21 +160,21 @@ export default function ReservationContact({ defaultOpen = false }) {
                         required
                         value={formData.date}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-sm outline-none transition-all"
+                        className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-base sm:text-sm outline-none transition-all"
                       />
                     </div>
                   </div>
 
                   {/* Time */}
                   <div>
-                    <label className="block font-sub text-xs font-bold tracking-wider text-forest uppercase mb-1.5">
+                    <label className="block font-sub text-[11px] sm:text-xs font-bold tracking-wider text-forest uppercase mb-1">
                       Preferred Time *
                     </label>
                     <select
                       name="time"
                       value={formData.time}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-sm outline-none transition-all"
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-base sm:text-sm outline-none transition-all"
                     >
                       <option value="08:30">08:30 AM (Morning Brew)</option>
                       <option value="10:30">10:30 AM (Garden Brunch)</option>
@@ -187,33 +187,33 @@ export default function ReservationContact({ defaultOpen = false }) {
 
                   {/* Number of Guests */}
                   <div>
-                    <label className="block font-sub text-xs font-bold tracking-wider text-forest uppercase mb-1.5">
+                    <label className="block font-sub text-[11px] sm:text-xs font-bold tracking-wider text-forest uppercase mb-1">
                       Number of Guests
                     </label>
                     <select
                       name="guests"
                       value={formData.guests}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-sm outline-none transition-all"
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-base sm:text-sm outline-none transition-all"
                     >
-                      <option value="1">1 Person (Solo Coffee Session)</option>
+                      <option value="1">1 Person (Solo Session)</option>
                       <option value="2">2 Persons (Table for Two)</option>
                       <option value="3-4">3-4 Persons (Cozy Group)</option>
-                      <option value="5-8">5-8 Persons (Garden Party Table)</option>
+                      <option value="5-8">5-8 Persons (Garden Party)</option>
                       <option value="8+">8+ Persons (Private Gazebo)</option>
                     </select>
                   </div>
 
                   {/* Seating Preference */}
                   <div>
-                    <label className="block font-sub text-xs font-bold tracking-wider text-forest uppercase mb-1.5">
+                    <label className="block font-sub text-[11px] sm:text-xs font-bold tracking-wider text-forest uppercase mb-1">
                       Seating Preference
                     </label>
                     <select
                       name="area"
                       value={formData.area}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-sm outline-none transition-all"
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-base sm:text-sm outline-none transition-all"
                     >
                       <option value="garden-patio">🌿 Open Garden Patio (Pet Friendly)</option>
                       <option value="veranda">☕ Shaded Teakwood Veranda</option>
@@ -225,7 +225,7 @@ export default function ReservationContact({ defaultOpen = false }) {
 
                 {/* Special Notes */}
                 <div>
-                  <label className="block font-sub text-xs font-bold tracking-wider text-forest uppercase mb-1.5">
+                  <label className="block font-sub text-[11px] sm:text-xs font-bold tracking-wider text-forest uppercase mb-1">
                     Special Requests (Optional)
                   </label>
                   <textarea
@@ -234,7 +234,7 @@ export default function ReservationContact({ defaultOpen = false }) {
                     placeholder="Dietary preferences, bringing pets, celebrating anniversary or birthday..."
                     value={formData.specialRequest}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-sm outline-none transition-all resize-none"
+                    className="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 bg-cream-100 rounded-xl border border-olive/30 focus:border-olive focus:ring-2 focus:ring-olive/20 text-espresso text-base sm:text-sm outline-none transition-all resize-none"
                   ></textarea>
                 </div>
 
@@ -242,7 +242,7 @@ export default function ReservationContact({ defaultOpen = false }) {
                 <button
                   type="submit"
                   data-cursor="pointer"
-                  className="w-full py-4 rounded-2xl bg-mustard hover:bg-mustard-light text-espresso font-sub font-bold text-sm tracking-widest shadow-warm-md hover:shadow-gold-glow hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2"
+                  className="w-full py-3.5 sm:py-4 rounded-2xl bg-mustard hover:bg-mustard-light text-espresso font-sub font-bold text-xs sm:text-sm tracking-widest shadow-warm-md hover:shadow-gold-glow hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   <Sparkles className="w-4 h-4 text-forest" />
                   <span>CONFIRM TABLE RESERVATION</span>

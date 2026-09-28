@@ -21,7 +21,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-forest-dark text-cream-100 overflow-hidden pt-16 pb-12 border-t-4 border-olive">
+    <footer className="relative bg-forest-dark text-cream-100 overflow-hidden pt-16 pb-28 sm:pb-12 border-t-4 border-olive">
       
       {/* Decorative Vine & Leaf Border along the top */}
       <div className="absolute top-0 left-0 right-0 h-6 -translate-y-3 pointer-events-none flex justify-center items-center overflow-hidden opacity-90">

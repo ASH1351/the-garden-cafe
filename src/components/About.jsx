@@ -45,19 +45,19 @@ function CounterItem({ endValue, suffix = '', label, sublabel, icon: Icon }) {
   return (
     <div
       ref={ref}
-      className="flex flex-col items-center text-center p-6 bg-cream-100/90 rounded-2xl border border-olive/20 shadow-warm-sm hover:shadow-warm-md hover:-translate-y-1 transition-all duration-300 group"
+      className="flex flex-col items-center text-center p-3.5 sm:p-6 bg-cream-100/90 rounded-2xl border border-olive/20 shadow-warm-sm hover:shadow-warm-md hover:-translate-y-1 transition-all duration-300 group"
     >
-      <div className="w-12 h-12 rounded-full bg-olive/10 group-hover:bg-olive group-hover:text-cream-100 text-olive flex items-center justify-center transition-colors duration-300 mb-3">
-        <Icon className="w-6 h-6" />
+      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-olive/10 group-hover:bg-olive group-hover:text-cream-100 text-olive flex items-center justify-center transition-colors duration-300 mb-2 sm:mb-3">
+        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
       </div>
-      <div className="font-heading text-3xl sm:text-4xl text-forest font-bold tracking-tight">
+      <div className="font-heading text-2xl sm:text-4xl text-forest font-bold tracking-tight">
         {count.toLocaleString()}
         {suffix}
       </div>
-      <div className="font-sub text-xs sm:text-sm font-bold tracking-wider text-olive mt-1 uppercase">
+      <div className="font-sub text-[10px] sm:text-sm font-bold tracking-wider text-olive mt-1 uppercase">
         {label}
       </div>
-      <div className="font-body text-xs text-espresso/60 mt-0.5">
+      <div className="font-body text-[10px] sm:text-xs text-espresso/60 mt-0.5">
         {sublabel}
       </div>
     </div>
@@ -125,20 +125,20 @@ export default function About() {
               </div>
 
               {/* Handcrafted Seal Stamp */}
-              <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-mustard text-espresso rounded-full p-2 shadow-warm-lg flex flex-col items-center justify-center text-center border-4 border-cream-200 rotate-12 hover:rotate-0 transition-transform duration-300">
-                <Sprout className="w-5 h-5 text-forest mb-0.5" />
-                <span className="font-sub text-[9px] font-black tracking-widest leading-none">
+              <div className="absolute -bottom-4 -right-2 sm:-bottom-6 sm:-right-6 w-22 h-22 sm:w-28 sm:h-28 bg-mustard text-espresso rounded-full p-2 shadow-warm-lg flex flex-col items-center justify-center text-center border-2 sm:border-4 border-cream-200 rotate-12 hover:rotate-0 transition-transform duration-300">
+                <Sprout className="w-4 h-4 sm:w-5 sm:h-5 text-forest mb-0.5" />
+                <span className="font-sub text-[8px] sm:text-[9px] font-black tracking-widest leading-none">
                   FARM FRESH
                 </span>
-                <span className="font-heading text-xs font-bold mt-0.5">
+                <span className="font-heading text-[10px] sm:text-xs font-bold mt-0.5">
                   100% ORGANIC
                 </span>
               </div>
 
               {/* Small Note Card */}
-              <div className="absolute -top-6 -left-6 hidden sm:flex items-center gap-2 bg-cream-50 border border-olive/30 px-4 py-2.5 rounded-xl shadow-warm-md rotate-[-4deg]">
-                <Coffee className="w-4 h-4 text-mustard" />
-                <span className="font-handwriting text-base text-espresso">
+              <div className="absolute -top-4 -left-2 sm:-top-6 sm:-left-6 hidden xs:flex sm:flex items-center gap-2 bg-cream-50 border border-olive/30 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl shadow-warm-md rotate-[-4deg]">
+                <Coffee className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-mustard" />
+                <span className="font-handwriting text-sm sm:text-base text-espresso">
                   Freshly ground Arabica daily
                 </span>
               </div>

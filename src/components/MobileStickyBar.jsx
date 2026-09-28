@@ -3,8 +3,8 @@ import { Phone, MapPin, Calendar } from 'lucide-react';
 
 export default function MobileStickyBar({ onOpenReservation }) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-cream-100/95 backdrop-blur-md border-t-2 border-olive/20 shadow-warm-lg p-2.5 px-4 animate-slideUp">
-      <div className="flex items-center justify-between gap-3">
+    <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-cream-100/95 backdrop-blur-md border-t-2 border-olive/20 shadow-warm-lg p-2.5 px-4 pb-[max(0.65rem,env(safe-area-inset-bottom))] animate-slideUp">
+      <div className="flex items-center justify-between gap-2.5">
         {/* Call button */}
         <a
           href="tel:+918041235678"

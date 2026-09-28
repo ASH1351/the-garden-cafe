@@ -329,6 +329,17 @@ export default function Hero3D({ onExploreMenu, onBookTable }) {
   const mousePos = useRef({ x: 0, y: 0 });
   const growthProgress = useRef(0);
   const [grown, setGrown] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile and window resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Growth animation trigger
   useEffect(() => {
@@ -337,10 +348,9 @@ export default function Hero3D({ onExploreMenu, onBookTable }) {
 
     const animateGrowth = (timestamp) => {
       if (!startTime) startTime = timestamp;
-      const elapsed = (timestamp - startTime) / 1000; // in seconds
-      const progress = Math.min(elapsed / 2.2, 1); // 2.2s bloom duration
+      const elapsed = (timestamp - startTime) / 1000;
+      const progress = Math.min(elapsed / 2.2, 1);
 
-      // Smooth easeOutCubic
       growthProgress.current = 1 - Math.pow(1 - progress, 3);
 
       if (progress < 1) {
@@ -354,11 +364,18 @@ export default function Hero3D({ onExploreMenu, onBookTable }) {
     return () => cancelAnimationFrame(animId);
   }, []);
 
-  // Mouse & Gyroscope handler for parallax
+  // Mouse, Touch & Gyroscope handler for parallax
   useEffect(() => {
     const handleMouseMove = (e) => {
       mousePos.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       mousePos.current.y = (e.clientY / window.innerHeight) * 2 - 1;
+    };
+
+    const handleTouchMove = (e) => {
+      if (e.touches && e.touches[0]) {
+        mousePos.current.x = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+        mousePos.current.y = (e.touches[0].clientY / window.innerHeight) * 2 - 1;
+      }
     };
 
     const handleOrientation = (e) => {
@@ -369,12 +386,14 @@ export default function Hero3D({ onExploreMenu, onBookTable }) {
     };
 
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
     if (window.DeviceOrientationEvent) {
       window.addEventListener('deviceorientation', handleOrientation);
     }
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
       if (window.DeviceOrientationEvent) {
         window.removeEventListener('deviceorientation', handleOrientation);
       }
@@ -384,20 +403,23 @@ export default function Hero3D({ onExploreMenu, onBookTable }) {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-cream-200 pt-20 pb-16"
+      className="relative w-full min-h-[92vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-cream-200 pt-20 pb-16 sm:pb-20"
     >
       {/* Warm Ambient Radial Gradients */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-mustard/15 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-96 h-96 rounded-full bg-olive/10 blur-3xl pointer-events-none" />
-      <div className="absolute top-20 right-10 w-80 h-80 rounded-full bg-leaf/15 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[700px] h-[340px] sm:h-[700px] rounded-full bg-mustard/15 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-4 sm:left-10 w-48 sm:w-96 h-48 sm:h-96 rounded-full bg-olive/10 blur-3xl pointer-events-none" />
+      <div className="absolute top-20 right-4 sm:right-10 w-48 sm:w-80 h-48 sm:h-80 rounded-full bg-leaf/15 blur-3xl pointer-events-none" />
 
       {/* 3D WebGL Canvas */}
-      <div className="absolute inset-0 z-10 pointer-events-auto">
+      <div className="absolute inset-0 z-10 pointer-events-none">
         <Canvas
           shadows
-          camera={{ position: [0, 0.4, 4.8], fov: 45 }}
+          camera={{
+            position: isMobile ? [0, 0.2, 5.8] : [0, 0.4, 4.8],
+            fov: isMobile ? 50 : 45
+          }}
           gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-          dpr={[1, 1.75]}
+          dpr={[1, isMobile ? 1.5 : 1.75]}
         >
           {/* Warm Garden Lighting */}
           <ambientLight intensity={0.85} color="#FAF6EB" />
@@ -406,8 +428,8 @@ export default function Hero3D({ onExploreMenu, onBookTable }) {
             intensity={1.5}
             color="#FFF4D6"
             castShadow
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
+            shadow-mapSize-width={isMobile ? 512 : 1024}
+            shadow-mapSize-height={isMobile ? 512 : 1024}
           />
           <pointLight position={[-4, 2, -2]} intensity={0.6} color="#7FA043" />
           <pointLight position={[0, -1, 2]} intensity={0.5} color="#E2A72E" />
@@ -419,7 +441,7 @@ export default function Hero3D({ onExploreMenu, onBookTable }) {
           <FloatingGardenElements />
 
           {/* Golden Ambient Sparkles */}
-          <Sparkles count={35} scale={6} size={2.5} speed={0.4} opacity={0.6} color="#E2A72E" />
+          <Sparkles count={isMobile ? 18 : 35} scale={6} size={2.5} speed={0.4} opacity={0.6} color="#E2A72E" />
         </Canvas>
       </div>
 
@@ -427,15 +449,15 @@ export default function Hero3D({ onExploreMenu, onBookTable }) {
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col justify-between pointer-events-none">
         
         {/* Top Floating Badge & Welcome Note */}
-        <div className="flex justify-between items-start pt-6 sm:pt-8">
+        <div className="flex justify-between items-start pt-2 sm:pt-6">
           <div className="pointer-events-auto flex items-center gap-2">
-            <span className="ribbon-banner text-xs sm:text-sm shadow-warm-md">
+            <span className="ribbon-banner text-[10px] sm:text-xs py-1 px-3.5 sm:px-5 shadow-warm-md">
               EST. 2018
             </span>
           </div>
 
           {/* Circular Rotating Text Stamp Badge */}
-          <div className="pointer-events-auto relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+          <div className="pointer-events-auto relative w-20 h-20 sm:w-28 sm:h-28 flex items-center justify-center">
             <svg
               className="w-full h-full animate-spin-slow text-forest opacity-80"
               viewBox="0 0 100 100"
@@ -453,41 +475,41 @@ export default function Hero3D({ onExploreMenu, onBookTable }) {
               </text>
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-xl sm:text-2xl">☕</span>
+              <span className="text-lg sm:text-2xl">☕</span>
             </div>
           </div>
         </div>
 
         {/* Hero Central Typography & Call-To-Actions */}
-        <div className="my-auto py-12 sm:py-20 flex flex-col items-center text-center">
+        <div className="my-auto py-8 sm:py-16 flex flex-col items-center text-center">
           
           {/* Subheading Ribbon */}
-          <div className="pointer-events-auto inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cream-100/90 border border-olive/30 text-olive text-xs sm:text-sm font-sub font-bold tracking-[0.25em] mb-4 shadow-warm-sm">
+          <div className="pointer-events-auto inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-cream-100/90 border border-olive/30 text-olive text-[10px] sm:text-xs font-sub font-bold tracking-[0.2em] sm:tracking-[0.25em] mb-3 sm:mb-4 shadow-warm-sm">
             <span>🌿</span>
-            <span>AN URBAN BOTANICAL SANCTUARY</span>
+            <span>BOTANICAL SANCTUARY</span>
             <span>🌿</span>
           </div>
 
           {/* Massive Handcrafted Headline */}
-          <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-forest font-bold tracking-tight leading-[1.05] drop-shadow-sm max-w-4xl">
-            WHERE COFFEE <br className="hidden sm:inline" />
+          <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-forest font-bold tracking-tight leading-[1.08] drop-shadow-sm max-w-4xl px-2">
+            WHERE COFFEE <br className="hidden xs:inline" />
             <span className="text-olive underline decoration-mustard decoration-wavy decoration-2">
               BLOOMS
             </span>
           </h1>
 
           {/* Warm Narrative Tagline */}
-          <p className="mt-5 max-w-xl text-base sm:text-lg md:text-xl text-espresso/80 font-body font-normal leading-relaxed">
+          <p className="mt-4 max-w-lg text-sm sm:text-base md:text-xl text-espresso/80 font-body font-normal leading-relaxed px-3">
             Step through our vine-covered arches into sun-dappled tables, artisanal single-origin brews, and handcrafted garden bites.
           </p>
 
-          {/* Call to Actions */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 pointer-events-auto">
+          {/* Call to Actions - Full width on small phones */}
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pointer-events-auto w-full max-w-xs sm:max-w-none px-4 sm:px-0">
             {/* Mustard CTA: VIEW MENU */}
             <button
               onClick={onExploreMenu}
               data-cursor="cup"
-              className="flex items-center gap-2.5 bg-mustard hover:bg-mustard-light text-espresso font-sub font-bold text-xs sm:text-sm tracking-widest px-8 py-4 rounded-full shadow-warm-lg hover:shadow-gold-glow hover:-translate-y-1 active:translate-y-0 transition-all duration-300 group"
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-mustard hover:bg-mustard-light text-espresso font-sub font-bold text-xs sm:text-sm tracking-widest px-7 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-warm-lg hover:shadow-gold-glow hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group"
             >
               <UtensilsCrossed className="w-4 h-4 text-espresso group-hover:rotate-12 transition-transform" />
               <span>EXPLORE MENU</span>
@@ -497,7 +519,7 @@ export default function Hero3D({ onExploreMenu, onBookTable }) {
             <a
               href="#contact"
               data-cursor="pointer"
-              className="flex items-center gap-2.5 bg-cream-100/85 hover:bg-cream-100 text-forest border-2 border-forest/40 hover:border-forest font-sub font-bold text-xs sm:text-sm tracking-widest px-7 py-3.5 rounded-full shadow-warm-sm hover:-translate-y-1 active:translate-y-0 transition-all duration-300"
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-cream-100/90 hover:bg-cream-100 text-forest border-2 border-forest/40 hover:border-forest font-sub font-bold text-xs sm:text-sm tracking-widest px-6 sm:px-7 py-3 sm:py-3.5 rounded-full shadow-warm-sm hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300"
             >
               <Compass className="w-4 h-4 text-olive" />
               <span>FIND US</span>
@@ -505,7 +527,7 @@ export default function Hero3D({ onExploreMenu, onBookTable }) {
           </div>
 
           {/* Handwritten touch */}
-          <p className="mt-4 font-handwriting text-xl sm:text-2xl text-olive rotate-[-2deg]">
+          <p className="mt-3 sm:mt-4 font-handwriting text-lg sm:text-2xl text-olive rotate-[-2deg]">
             "Fresh leaves, fresh beans, calm minds."
           </p>
         </div>
@@ -516,13 +538,13 @@ export default function Hero3D({ onExploreMenu, onBookTable }) {
             href="#about"
             data-cursor="leaf"
             aria-label="Scroll down to Our Story"
-            className="flex flex-col items-center gap-1.5 text-olive hover:text-forest transition-colors duration-200 group"
+            className="flex flex-col items-center gap-1 text-olive hover:text-forest transition-colors duration-200 group"
           >
-            <span className="font-sub text-[11px] tracking-[0.25em] font-semibold">
+            <span className="font-sub text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] font-semibold">
               SCROLL TO DISCOVER
             </span>
-            <div className="w-8 h-8 rounded-full border border-olive/30 flex items-center justify-center group-hover:border-olive group-hover:bg-cream-100 transition-all animate-bounce">
-              <ArrowDown className="w-4 h-4 text-olive" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-olive/30 flex items-center justify-center group-hover:border-olive group-hover:bg-cream-100 transition-all animate-bounce">
+              <ArrowDown className="w-3.5 h-3.5 text-olive" />
             </div>
           </a>
         </div>

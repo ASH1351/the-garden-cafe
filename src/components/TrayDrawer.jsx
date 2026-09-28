@@ -22,7 +22,7 @@ export default function TrayDrawer({
         onClick={onClose}
       />
 
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
         <div className="w-screen max-w-md bg-cream-50 shadow-2xl border-l-2 border-olive/30 flex flex-col justify-between">
           
           {/* Header */}
@@ -127,7 +127,7 @@ export default function TrayDrawer({
 
           {/* Footer with Subtotal & Proceed */}
           {items.length > 0 && (
-            <div className="p-6 bg-cream-100 border-t border-olive/20 space-y-4">
+            <div className="p-5 sm:p-6 pb-[max(1.25rem,env(safe-area-inset-bottom))] bg-cream-100 border-t border-olive/20 space-y-3 sm:space-y-4">
               <div className="flex items-center justify-between">
                 <span className="font-sub text-xs uppercase font-bold text-espresso/70">
                   Estimated Total:
